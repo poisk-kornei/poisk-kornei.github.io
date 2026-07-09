@@ -295,7 +295,7 @@
             </div>
         </section>
 
-        <!-- 3. Нижняя таблица запроса с полноценной анкетой -->
+  <!-- 3. Нижняя таблица запроса с полноценной анкетой -->
         <section id="order-form" class="bottom-grid">
             <div class="bottom-info">
                 <h2>Форма запроса</h2>
@@ -304,12 +304,13 @@
             
             <div class="pro-form-wrapper">
                 <h4>Анкета поиска</h4>
+                <!-- ИСПРАВЛЕНО: Прямой и точный адрес отправки -->
                 <form action="https://web3forms.com" method="POST">
                     
-                    <!-- Ваш личный проверенный активный ключ -->
+                    <!-- Ваш личный активный ключ -->
                     <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
                     
-                    <!-- Ссылка перенаправления обратно на ваш сайт БЕЗ ошибки 404 -->
+                    <!-- ИСПРАВЛЕНО: Ссылка возвращает строго на ваш работающий сайт -->
                     <input type="hidden" name="redirect" value="https://github.io">
                     
                     <input type="text" name="name" class="form-input-field" placeholder="Ваше имя" required>
@@ -325,18 +326,7 @@
 
     </div>
 
-    <!-- Автоматическое исправление адресов, чтобы не было ошибки 404 и переброса -->
-    <script>
-        const targetForm = document.querySelector('form');
-        if (targetForm) {
-            targetForm.setAttribute('action', 'https://web3forms.com');
-            const redirectField = targetForm.querySelector('input[name="redirect"]');
-            if (redirectField) {
-                redirectField.value = 'https://github.io';
-            }
-        }
-    </script>
-
 </body>
 </html>
+
 
