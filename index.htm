@@ -3,15 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Архивный поиск предков | Генеалогия</title>
+    <title>Архивный поиск предков</title>
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f7f6f0;
-            color: #111111;
+            /* Неоновый технологичный фон вместо белого */
+            background-color: #0d0b21;
+            background-image: 
+                linear-gradient(rgba(79, 51, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(79, 51, 255, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            color: #ffffff;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Большие невидимые надписи по бокам, чтобы закрыть пустоту */
+        body::before {
+            content: "ARCHIVE";
+            position: absolute;
+            font-size: 12rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.02);
+            top: 10%;
+            left: -50px;
+            z-index: 0;
+            pointer-events: none;
+        }
+        body::after {
+            content: "HISTORY";
+            position: absolute;
+            font-size: 12rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.02);
+            bottom: 20%;
+            right: -50px;
+            z-index: 0;
+            pointer-events: none;
         }
 
         .main-wrapper {
@@ -19,6 +49,7 @@
             margin: 40px auto;
             padding: 0 20px;
             position: relative;
+            z-index: 1;
         }
 
         .hero-grid {
@@ -61,7 +92,6 @@
             align-self: flex-start;
             font-size: 0.9rem;
             letter-spacing: 0.5px;
-            transition: all 0.2s ease;
         }
 
         .hero-right-column {
@@ -71,7 +101,7 @@
         }
 
         .box-mini-purple {
-            background-color: #5633ff;
+            background-color: #311bbd;
             border-radius: 24px;
             padding: 30px;
             color: #ffffff;
@@ -91,7 +121,6 @@
             display: flex;
             align-items: center;
             text-transform: uppercase;
-            letter-spacing: -0.5px;
         }
 
         .section-header {
@@ -100,15 +129,12 @@
             text-transform: uppercase;
             margin: 60px 0 30px 0;
             line-height: 1.1;
-            letter-spacing: -1px;
         }
 
         .programmes-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 16px;
-            position: relative;
-            z-index: 2;
         }
 
         .prog-card {
@@ -118,7 +144,7 @@
             color: #ffffff;
             display: flex;
             flex-direction: column;
-            min-height: 260px;
+            min-height: 240px;
             box-sizing: border-box;
         }
 
@@ -128,10 +154,8 @@
             text-transform: uppercase;
             margin-top: 0;
             margin-bottom: 20px;
-            line-height: 1.2;
             border-bottom: 2px solid rgba(255,255,255,0.1);
             padding-bottom: 12px;
-            letter-spacing: -0.5px;
         }
 
         .prog-card p {
@@ -145,7 +169,6 @@
             background-color: #ff33b8;
         }
 
-        /* ТАБЛИЦА ЗАПРОСА СБОКУ (Желто-зеленая секция) */
         .bottom-grid {
             display: grid;
             grid-template-columns: 1.1fr 1fr;
@@ -165,7 +188,6 @@
             line-height: 1.05;
             margin-top: 0;
             margin-bottom: 20px;
-            letter-spacing: -1px;
         }
 
         .bottom-info p {
@@ -175,7 +197,6 @@
             font-weight: 500;
         }
 
-        /* ФОРМА ИЗ ТВОЕГО ПРИМЕРА (Фиолетовая плашка) */
         .pro-form-wrapper {
             background-color: #4f33ff;
             border-radius: 24px;
@@ -238,48 +259,45 @@
 
     <div class="main-wrapper">
 
-        <!-- 1. Верхние блоки -->
         <section class="hero-grid">
             <div class="hero-left">
-                <h1>Архивный поиск предков в Беларуси</h1>
-                <a href="#order-form" class="btn-get-started">Получить консультацию</a>
+                <h1>Архивный поиск предков</h1>
+                <a href="#order-form" class="btn-get-started">Консультация</a>
             </div>
             <div class="hero-right-column">
                 <div class="box-mini-purple">
-                    Официальное подтверждение происхождения для Карты поляка и гражданства ЕС.
+                    Поиск документов для Карты поляка и подтверждения происхождения.
                 </div>
                 <div class="box-mini-lime">
-                    ✦ Изучим госархивы Минска, Гродно и Бреста под ключ.
+                    ✦ Работа по доверенности во всех госархивах Беларуси.
                 </div>
             </div>
         </section>
 
-        <!-- 2. Таблички в ряд -->
-        <h2 class="section-header">Направления поиска</h2>
+        <h2 class="section-header">Направления</h2>
         <section class="programmes-grid">
             <div class="prog-card">
                 <h3>Польские корни</h3>
-                <p>Розыск выписей из метрик, списков избирателей в Сейм, документов о депортации. Полное подтверждение для Карты поляка.</p>
+                <p>Розыск выписей из метрик, списков избирателей в Сейм, документов о депортации предков.</p>
             </div>
             <div class="prog-card">
                 <h3>Еврейские корни</h3>
-                <p>Глубокий поиск по раввинатам, ревизским сказкам, личным делам советского периода и архивам черты оседлости.</p>
+                <p>Поиск по раввинатам, ревизским сказкам, личным делам и архивам черты оседлости.</p>
             </div>
             <div class="prog-card">
                 <h3>Немецкие корни</h3>
-                <p>Поиск сведений о происхождении, церковных книг колонистов, списков переселенцев для программы поздних эмигрантов.</p>
+                <p>Розыск церковных книг колонистов и списков переселенцев для миграционных программ.</p>
             </div>
             <div class="prog-card pink-highlight">
-                <h3>Сложные задачи</h3>
-                <p>Восстанавливаем разорванные цепочки родства для судов и ЗАГС по нотариальной доверенности даже при утере фондов.</p>
+                <h3>Сложные кейсы</h3>
+                <p>Восстановление цепочки родства для подачи в ЗАГС даже при плохой сохранности фондов.</p>
             </div>
         </section>
 
-        <!-- 3. ТАБЛИЦА С ФОРМОЙ ЗАПРОСА (ОНА ТУТ!) -->
         <section id="order-form" class="bottom-grid">
             <div class="bottom-info">
-                <h2>Форма отправки запроса</h2>
-                <p>Заполните анкету справа. Наш эксперт-генеалог проведет первичный бесплатный анализ документов и свяжется с вами для разбора дела.</p>
+                <h2>Форма запроса</h2>
+                <p>Оставьте свои контакты. Наш эксперт-генеалог проведет бесплатный анализ и свяжется с вами.</p>
             </div>
             
             <div class="pro-form-wrapper">
@@ -289,10 +307,10 @@
                     
                     <input type="text" name="name" class="form-input-field" placeholder="Ваше имя" required>
                     <input type="text" name="contact" class="form-input-field" placeholder="Телефон / Telegram / WhatsApp" required>
-                    <input type="email" name="email" class="form-input-field" placeholder="Email для связи" required>
-                    <textarea name="message" rows="4" class="form-input-field form-textarea" placeholder="Кого вы ищете? (Укажите ФИО предков, годы и места рождения, если известны)" required></textarea>
+                    <input type="email" name="form_email" class="form-input-field" placeholder="Email для связи" required>
+                    <textarea name="message" rows="4" class="form-input-field form-textarea" placeholder="Кого вы ищете? (ФИО предков, годы и места рождения)" required></textarea>
                     
-                    <button type="submit" class="btn-submit-neon">Начать поиск корней</button>
+                    <button type="submit" class="btn-submit-neon">Отправить запрос</button>
                 </form>
             </div>
         </section>
