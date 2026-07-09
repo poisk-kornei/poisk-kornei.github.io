@@ -3,31 +3,272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Поиск корней в Беларуси | Карта поляка под ключ</title>
-    <meta name="description" content="Поиск польских, еврейских и немецких корней. Помощь в сборе документов.">
-    <link rel="stylesheet" href="style.css">
+    <title>Архивный поиск предков | Польские, еврейские, немецкие корни</title>
+    <style>
+        /* Современный минималистичный стиль на основе примера из Pinterest */
+        :root {
+            --bg-main: #fcfdfd;          /* Светлый чистый фон */
+            --bg-section: #f4f7f9;       /* Пастельный мягкий фон для блоков */
+            --text-dark: #1e293b;        /* Контрастный глубокий цвет текста */
+            --text-muted: #64748b;       /* Мягкий серый для подзаголовков */
+            --accent-orange: #ff6b4a;    /* Яркий кораллово-оранжевый для кнопок */
+            --accent-hover: #e05333;     /* Цвет кнопки при наведении */
+            --glass-border: #e2e8f0;     /* Тонкие аккуратные рамки */
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Главный экран (Hero) */
+        .hero {
+            padding: 100px 0 80px 0;
+            text-align: center;
+            background: radial-gradient(circle at top right, #eef2f7 0%, var(--bg-main) 60%);
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: var(--text-dark);
+            letter-spacing: -0.5px;
+        }
+        .hero .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 750px;
+            margin: 0 auto 40px auto;
+        }
+
+        /* Крупная контрастная кнопка */
+        .btn-accent {
+            background-color: var(--accent-orange);
+            color: #ffffff !important;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 16px 40px;
+            border-radius: 50px; /* Круглые стильные углы */
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 10px 25px rgba(255, 107, 74, 0.25);
+            transition: all 0.25s ease;
+        }
+        .btn-accent:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(255, 107, 74, 0.35);
+        }
+
+        /* Секция карточек (Как мы работаем) */
+        .features-section {
+            padding: 80px 0;
+            background-color: var(--bg-section);
+            border-radius: 32px;
+            margin: 20px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+        }
+        .card h3 {
+            font-size: 1.4rem;
+            margin-top: 0;
+            margin-bottom: 16px;
+        }
+        .card p {
+            color: var(--text-muted);
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        /* Блок сложных задач */
+        .special-tasks {
+            padding: 80px 0;
+        }
+        .tasks-box {
+            background: #ffffff;
+            border: 2px dashed #cbd5e1;
+            border-radius: 24px;
+            padding: 40px;
+        }
+        .tasks-box h3 {
+            font-size: 1.6rem;
+            margin-top: 0;
+            color: var(--text-dark);
+        }
+        .tasks-box ul {
+            padding-left: 20px;
+            margin-bottom: 0;
+        }
+        .tasks-box li {
+            margin-bottom: 12px;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Секция формы в красивой рамке */
+        .form-section {
+            padding: 80px 0 120px 0;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 50px;
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.04);
+        }
+        .form-container h2 {
+            font-size: 2rem;
+            margin-top: 0;
+            text-align: center;
+        }
+        .form-text {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+        }
+
+        /* Поля ввода с подсветкой */
+        .form-group {
+            margin-bottom: 24px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            color: var(--text-dark);
+            background-color: #f8fafc;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+            background-color: #ffffff;
+            box-shadow: 0 0 0 4px rgba(255, 107, 74, 0.1);
+        }
+        .btn-submit {
+            background-color: var(--text-dark);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: none;
+            padding: 18px;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+        .btn-submit:hover {
+            background-color: #0f172a;
+            transform: scale(1.01);
+        }
+    </style>
 </head>
 <body>
+
+    <!-- Главный экран -->
     <header class="hero">
         <div class="container">
-            <h1>Архивный поиск предков: польские, еврейские и немецкие корни</h1>
-            <p class="subtitle">Поможем найти документы для получения Карты поляка или репатриации.</p>
-            <a href="#order-form" class="btn">Консультация</a>
+            <h1>Архивный поиск предков:<br>польские, еврейские, немецкие корни</h1>
+            <p class="subtitle">Профессиональный сбор и восстановление документов в архивах Беларуси для успешного получения Карты поляка, гражданства, подтверждения происхождения и репатриации.</p>
+            <a href="#order-form" class="btn-accent">Консультация бесплатно</a>
         </div>
     </header>
-    <!-- Добавьте остальные секции (features, complex-tasks) здесь -->
-    <section id="order-form" class="form-section">
+
+    <!-- Блок «Как мы работаем» -->
+    <section class="features-section">
         <div class="container">
-            <h2>Оставить запрос</h2>
-            <form action="https://web3forms.com" method="POST">
-                <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
-                <input type="text" name="name" placeholder="Ваше имя" required>
-                <input type="text" name="contact" placeholder="Телефон" required>
-                <textarea name="message" placeholder="Ваша ситуация"></textarea>
-                <button type="submit" class="btn">Отправить</button>
-            </form>
+            <h2 class="section-title">Наши преимущества</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🔍 Глубокий анализ</h3>
+                    <p>Изучаем историю вашей семьи, точно определяем фонды и госархивы (Минск, Гродно, Брест), где хранятся нужные записи предков.</p>
+                </div>
+                <div class="card">
+                    <h3>📄 Официальные запросы</h3>
+                    <p>Правильно составляем и подаем юридические запросы в ЗАГСы и ведомства, что минимизирует отказы и ускоряет ответы.</p>
+                </div>
+                <div class="card">
+                    <h3>🔒 Полная конфиденциальность</h3>
+                    <p>Ваши личные данные и история поиска строго защищены. Мы работаем удаленно и гарантируем безопасность информации.</p>
+                </div>
+            </div>
         </div>
     </section>
-</body>
-</html>
+
+    <!-- Блок сложных задач -->
+    <section class="special-tasks">
+        <div class="container">
+            <div class="tasks-box">
+                <h3>Берёмся за самые сложные и запутанные генеалогические кейсы:</h3>
+                <ul>
+                    <li>Восстановление прерванной цепочки родства для законной подачи в ЗАГС, консульства и суды.</li>
+                    <li>Работа по нотариальной доверенности: представим ваши интересы в госархивах и ЗАГСах Беларуси «под ключ».</li>
+                    <li>Розыск документов и метрик даже в условиях частичной утери или плохой сохранности архивных фондов.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок формы заявки -->
+    <section id="order-form" class="form-section">
+        <div class="container">
+            <div class="form-container">
+                <h2>Оставить запрос на архивный поиск</h2>
+                <p class="form-text">Опишите вашу ситуацию. Наш специалист изучит вводные данные и свяжется с вами для бесплатного разбора дела.</p>
+                
+                <form action="https://web3forms.com" method="POST">
+                    <!-- Ключ Web3Forms -->
+                    <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
+
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="contact" placeholder="Телефон / Мессенджер (Telegram, WhatsApp)" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Email для связи" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" rows="5" placeholder="Каких родственников ищете? (Укажите ФИО, годы, места рождения предков и национальность, если известны)" required></textarea>
+                    </div>
+                    
+
 
