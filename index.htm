@@ -9,6 +9,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             margin: 0;
             padding: 0;
+            /* Неоновый технологичный фон вместо белого */
             background-color: #0d0b21;
             background-image: 
                 linear-gradient(rgba(79, 51, 255, 0.1) 1px, transparent 1px),
@@ -19,6 +20,7 @@
             position: relative;
         }
 
+        /* Большие невидимые надписи по бокам, чтобы закрыть пустоту */
         body::before {
             content: "ARCHIVE";
             position: absolute;
@@ -202,7 +204,6 @@
             color: #ffffff;
             box-shadow: 0 20px 40px rgba(79,51,255,0.25);
             box-sizing: border-box;
-            width: 100%;
         }
 
         .pro-form-wrapper h4 {
@@ -246,15 +247,6 @@
             cursor: pointer;
             box-shadow: 0 8px 20px rgba(255,51,184,0.3);
             margin-top: 10px;
-            display: block;
-            text-align: center;
-        }
-
-        #form-message {
-            margin-top: 15px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 1.1rem;
         }
 
         @media(max-width: 850px) {
@@ -267,19 +259,21 @@
 
     <div class="main-wrapper">
 
-        <!-- 1. Верхний экран -->
         <section class="hero-grid">
             <div class="hero-left">
                 <h1>Архивный поиск предков</h1>
                 <a href="#order-form" class="btn-get-started">Консультация</a>
             </div>
             <div class="hero-right-column">
-                <div class="box-mini-purple">Поиск документов для Карты поляка и подтверждения происхождения.</div>
-                <div class="box-mini-lime">✦ Работа по доверенности во всех госархивах Беларуси.</div>
+                <div class="box-mini-purple">
+                    Поиск документов для Карты поляка и подтверждения происхождения.
+                </div>
+                <div class="box-mini-lime">
+                    ✦ Работа по доверенности во всех госархивах Беларуси.
+                </div>
             </div>
         </section>
 
-        <!-- 2. Таблички направлений -->
         <h2 class="section-header">Направления</h2>
         <section class="programmes-grid">
             <div class="prog-card">
@@ -295,12 +289,11 @@
                 <p>Розыск церковных книг колонистов и списков переселенцев для миграционных программ.</p>
             </div>
             <div class="prog-card pink-highlight">
-                <h3>Сложные задачи</h3>
+                <h3>Сложные кейсы</h3>
                 <p>Восстановление цепочки родства для подачи в ЗАГС даже при плохой сохранности фондов.</p>
             </div>
         </section>
 
-        <!-- 3. Нижний блок с текстом и анкетой -->
         <section id="order-form" class="bottom-grid">
             <div class="bottom-info">
                 <h2>Форма запроса</h2>
@@ -309,16 +302,22 @@
             
             <div class="pro-form-wrapper">
                 <h4>Анкета поиска</h4>
-                
-                <form id="contact-form" method="POST">
+                <form action="https://web3forms.com" method="POST">
                     <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
                     
                     <input type="text" name="name" class="form-input-field" placeholder="Ваше имя" required>
                     <input type="text" name="contact" class="form-input-field" placeholder="Телефон / Telegram / WhatsApp" required>
-                    <input type="email" name="email" class="form-input-field" placeholder="Email для связи" required>
-                    <textarea name="message" rows="4" class="form-input-field form-textarea" placeholder="Кого вы ищете? (ФИО предков, годы, места рождения)" required></textarea>
+                    <input type="email" name="form_email" class="form-input-field" placeholder="Email для связи" required>
+                    <textarea name="message" rows="4" class="form-input-field form-textarea" placeholder="Кого вы ищете? (ФИО предков, годы и места рождения)" required></textarea>
                     
+                    <button type="submit" class="btn-submit-neon">Отправить запрос</button>
+                </form>
+            </div>
+        </section>
 
+    </div>
 
+</body>
+</html>
 
 
