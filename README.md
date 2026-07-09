@@ -1,1 +1,1 @@
-# poisk-kornei2026.github.io
+# poisk-kornei.github.io
