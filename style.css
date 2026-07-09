@@ -1,2 +1,67 @@
-#form-message { margin-top: 15px; text-align: center; font-weight: bold; font-size: 1.1rem; }
-.form-group select { width: 100%; padding: 14px; border: 1px solid #CBD5E0; border-radius: 8px; font-size: 1rem; background-color: #F7FAFC; }
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Архивный поиск предков в Беларуси</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="hero">
+        <div class="container">
+            <h1>Архивный поиск предков в Беларуси</h1>
+            <p class="subtitle">Поможем найти архивные документы ваших предков для успешного получения Карты поляка, гражданства или подтверждения происхождения.</p>
+            <a href="#order-form" class="btn">Консультация бесплатно</a>
+        </div>
+    </header>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Направления поиска</h2>
+            <div class="grid">
+                <div class="card"><h3>🔍 Польские корни</h3><p>Розыск выписей из метрик, списков избирателей, документов о депортации.</p></div>
+                <div class="card"><h3>🔍 Еврейские корни</h3><p>Поиск по раввинатам, ревизским сказкам, личным делам.</p></div>
+                <div class="card"><h3>🔍 Немецкие корни</h3><p>Розыск церковных книг колонистов и списков переселенцев.</p></div>
+                <div class="card" style="border-top: 4px solid #dc2626;"><h3>⚡ Сложные задачи</h3><p>Восстановление цепочки родства для подачи в ЗАГС (доверенность).</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="order-form" class="form-section">
+        <div class="container">
+            <div class="form-container">
+                <h2>Оставить запрос на поиск</h2>
+                <form id="contact-form" method="POST">
+                    <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
+                    <div class="form-group"><label>Имя:</label><input type="text" name="name" required></div>
+                    <div class="form-group"><label>Контакты:</label><input type="text" name="contact" placeholder="+375..." required></div>
+                    <div class="form-group"><label>Тип корней:</label><select name="root_type"><option>Польские</option><option>Еврейские</option><option>Немецкие</option></select></div>
+                    <div class="form-group"><label>Родственники:</label><textarea name="message" rows="3" required></textarea></div>
+                    <button type="submit" class="submit-btn">Начать поиск</button>
+                    <div id="form-message"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const msgBox = document.getElementById('form-message');
+            msgBox.textContent = 'Отправка...';
+            fetch('https://web3forms.com', {
+                method: 'POST',
+                body: new FormData(this)
+            }).then(() => {
+                msgBox.style.color = '#38A169';
+                msgBox.textContent = 'Успешно отправлено!';
+                this.reset();
+            }).catch(() => {
+                msgBox.style.color = '#E53E3E';
+                msgBox.textContent = 'Ошибка, попробуйте снова.';
+            });
+        });
+    </script>
+</body>
+</html>
+
