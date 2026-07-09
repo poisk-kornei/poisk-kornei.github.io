@@ -294,7 +294,7 @@
             </div>
         </section>
 
-        <!-- 3. Нижний экран с полной анкетой -->
+        <!-- 3. Нижний экран с формой запроса -->
         <section id="order-form" class="bottom-grid">
             <div class="bottom-info">
                 <h2>Форма запроса</h2>
@@ -305,20 +305,17 @@
                 <h4>Анкета поиска</h4>
                 
                 <form action="https://web3forms.com" method="POST">
-                    <!-- Ключ доступа и возврат на ваш сайт -->
+                    <!-- Настройки Web3Forms -->
                     <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
                     <input type="hidden" name="redirect" value="https://github.io">
                     
-                    <!-- Поля анкеты -->
+                    <!-- Имя -->
                     <input type="text" name="name" class="form-input-field" placeholder="Ваше имя" required>
-                    <input type="text" name="contact" class="form-input-field" placeholder="Телефон / Telegram / WhatsApp" required>
+                    
+                    <!-- Почта -->
                     <input type="email" name="form_email" class="form-input-field" placeholder="Email для связи" required>
                     
-                    <!-- Выпадающий список национальностей -->
-
-
-
+                    <!-- Телефон -->
+                    <input type="text" name="contact" class="form-input-field" placeholder="Телефон / Telegram / WhatsApp" required>
                     
-
-
-
+                    <!-- Сообщение -->
