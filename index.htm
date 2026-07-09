@@ -299,6 +299,28 @@
                 <h2>Форма запроса</h2>
                 <p>Оставьте свои контакты. Наш эксперт-генеалог проведет бесплатный анализ и свяжется с вами.</p>
             </div>
+            <div class="pro-form-wrapper">
+                <h4>Анкета поиска</h4>
+                
+                <!-- НАЧАЛО ТВОЕЙ ФОРМЫ (ВСТАВЛЯТЬ СТРОГО СЮДА) -->
+                <form action="https://web3forms.com" method="POST">
+                    <!-- Ваш ключ -->
+                    <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
+                    
+                    <!-- Перенаправление на ваш сайт после отправки -->
+                    <input type="hidden" name="redirect" value="https://github.io">
+                    
+                    <input type="text" name="name" class="form-input-field" placeholder="Ваше имя" required>
+                    <input type="text" name="contact" class="form-input-field" placeholder="Телефон / Telegram / WhatsApp" required>
+                    <input type="email" name="form_email" class="form-input-field" placeholder="Email для связи" required>
+                    <textarea name="message" rows="4" class="form-input-field form-textarea" placeholder="Кого вы ищете? (Укажите ФИО предков, годы и места рождения)" required></textarea>
+                    
+                    <button type="submit" class="btn-submit-neon">Отправить запрос</button>
+                </form>
+                <!-- КОНЕЦ ФОРМЫ -->
+
+            </div>
+
             
             <div class="pro-form-wrapper">
                 <h4>Анкета поиска</h4>
