@@ -4,83 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Архивный поиск предков | Польские, еврейские, немецкие корни</title>
-    <meta name="description" content="Бесплатная консультация по поиску польских, еврейских и немецких корней в архивах Беларуси. Сбор документов для Карты поляка, ЗАГС и репатриации.">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Стилизация с анимациями (fadeIn) и эффектами при наведении (transition) */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: #f4f7f6; color: #333; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        .hero { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; text-align: center; padding: 80px 20px; animation: fadeIn 1s ease-out; }
+        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: all 0.3s ease; animation: fadeIn 1.2s ease-out; }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 12px 24px rgba(0,0,0,0.15); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .form-container { max-width: 550px; margin: 0 auto; background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: center; }
+        /* Интерактивные рамки */
+        .form-group input, .form-group textarea { width: 100%; padding: 14px; border: 2px solid #ced4da; border-radius: 8px; transition: all 0.3s ease; box-sizing: border-box; }
+        .form-group input:focus, .form-group textarea:focus { border-color: #2a5298; box-shadow: 0 0 0 4px rgba(42, 82, 152, 0.15); outline: none; }
+        .btn-submit { background: #2a5298; color: white; border: none; padding: 15px 30px; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; width: 100%; }
+        .btn-submit:hover { background: #1e3c72; transform: scale(1.02); }
+    </style>
 </head>
 <body>
-
-    <!-- Главный экран -->
-    <header class="hero">
-        <div class="container">
-            <h1>Архивный поиск предков: польские, еврейские и немецкие корни</h1>
-            <p class="subtitle">Профессиональный сбор документов для Карты поляка, репатриации, гражданства и подтверждения происхождения в архивах Беларуси.</p>
-            <a href="#order-form" class="btn">Консультация бесплатно</a>
+    <header class="hero"><h1>Архивный поиск предков</h1></header>
+    <section class="container">
+        <div class="grid">
+            <div class="card"><h3>🔍 Глубокий анализ</h3></div>
+            <div class="card"><h3>📄 Официальные запросы</h3></div>
         </div>
-    </header>
-
-    <!-- Блок преимуществ и информации -->
-    <section class="features">
-        <div class="container">
-            <h2 class="section-title">Как мы работаем</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>🔍 Глубокий анализ</h3>
-                    <p>Изучаем историю вашей семьи, определяем, в каких именно архивах (Минск, Гродно, Брест) могут храниться нужные записи.</p>
-                </div>
-                <div class="card">
-                    <h3>📄 Официальные запросы</h3>
-                    <p>Правильно составляем и подаем юридические запросы в ЗАГСы и госархивы, что ускоряет получение ответов.</p>
-                </div>
-                <div class="card">
-                    <h3>🔒 Полная анонимность</h3>
-                    <p>Ваши личные данные и история поиска строго конфиденциальны. Мы работаем удаленно и не разглашаем информацию.</p>
-                </div>
-            </div>
-
-            <!-- Блок о сложных задачах -->
-            <div class="special-info" style="margin-top: 40px; text-align: left; background: #f9f9f9; padding: 20px; border-left: 5px solid #0056b3;">
-                <h3>Берёмся за самые сложные и запутанные генеалогические кейсы:</h3>
-                <ul>
-                    <li>Восстановление цепочки родства для подачи в ЗАГС и суды.</li>
-                    <li>Работа по нотариальной доверенности: представим ваши интересы в госархивах и органах ЗАГС Беларуси «под ключ».</li>
-                    <li>Розыск документов в условиях плохой сохранности фондов.</li>
-                </ul>
-            </div>
+        <div id="order-form" class="form-container">
+            <h2>Оставить запрос</h2>
+            <form action="https://web3forms.com" method="POST">
+                <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
+                <div class="form-group"><input type="text" name="name" placeholder="Ваше имя" required></div>
+                <div class="form-group"><textarea name="message" placeholder="Ваша ситуация" required></textarea></div>
+                <button type="submit" class="btn-submit">Начать поиск</button>
+            </form>
         </div>
     </section>
-
-    <!-- Блок формы заявки -->
-    <section id="order-form" class="form-section">
-        <div class="container">
-            <div class="form-container">
-                <h2>Оставить запрос на архивный поиск</h2>
-                <p class="form-text">Опишите вашу ситуацию, и наш специалист свяжется с вами для первичного разбора.</p>
-                
-                <!-- НАЧАЛО ФОРМЫ ОТПРАВКИ (ИСПРАВЛЕНО) -->
-                <form action="https://web3forms.com" method="POST">
-                    <!-- Ваш личный ключ активации -->
-                    <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
-
-                    <div class="form-group">
-                        <input type="text" name="name" placeholder="Ваше имя" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="contact" placeholder="Телефон / Мессенджер (Telegram, WhatsApp)" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="email" placeholder="Email для связи" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
-                    </div>
-                    <div class="form-group">
-                        <textarea name="message" rows="5" placeholder="Каких родственников ищете? (Укажите ФИО, годы и места рождения предков, а также национальность, если известны)" required style="width: 100%; padding: 10px; margin-bottom: 15px; resize: vertical;"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn" style="cursor: pointer;">Начать поиск корней</button>
-                </form>
-                <!-- КОНЕЦ ФОРМЫ ОТПРАВКИ -->
-
-            </div>
-        </div>
-    </section>
-
 </body>
 </html>
