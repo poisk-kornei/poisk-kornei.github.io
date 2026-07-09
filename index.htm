@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Поиск польских корней в Беларуси | Карта поляка под ключ</title>
-    <meta name="description" content="Бесплатная консультация по поиску польских корней в архивах Минска, Гродно и Бреста. Помощь в сборе документов для Карты поляка.">
+    <title>Архивный поиск предков | Польские, еврейские, немецкие корни</title>
+    <meta name="description" content="Бесплатная консультация по поиску польских, еврейских и немецких корней в архивах Беларуси. Сбор документов для Карты поляка, ЗАГС и репатриации.">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,13 +12,13 @@
     <!-- Главный экран -->
     <header class="hero">
         <div class="container">
-            <h1>Поиск польских корней в архивах Беларуси</h1>
-            <p class="subtitle">Поможем найти архивные документы ваших предков для успешного получения Карты поляка или гражданства Польши</p>
+            <h1>Архивный поиск предков: польские, еврейские и немецкие корни</h1>
+            <p class="subtitle">Профессиональный сбор документов для Карты поляка, репатриации, гражданства и подтверждения происхождения в архивах Беларуси.</p>
             <a href="#order-form" class="btn">Консультация бесплатно</a>
         </div>
     </header>
 
-    <!-- Блок преимуществ -->
+    <!-- Блок преимуществ и информации -->
     <section class="features">
         <div class="container">
             <h2 class="section-title">Как мы работаем</h2>
@@ -36,6 +36,16 @@
                     <p>Ваши личные данные и история поиска строго конфиденциальны. Мы работаем удаленно и не разглашаем информацию.</p>
                 </div>
             </div>
+
+            <!-- Блок о сложных задачах -->
+            <div class="special-info" style="margin-top: 40px; text-align: left; background: #f9f9f9; padding: 20px; border-left: 5px solid #0056b3;">
+                <h3>Берёмся за самые сложные и запутанные генеалогические кейсы:</h3>
+                <ul>
+                    <li>Восстановление цепочки родства для подачи в ЗАГС и суды.</li>
+                    <li>Работа по нотариальной доверенности: представим ваши интересы в госархивах и органах ЗАГС Беларуси «под ключ».</li>
+                    <li>Розыск документов в условиях плохой сохранности фондов.</li>
+                </ul>
+            </div>
         </div>
     </section>
 
@@ -43,34 +53,31 @@
     <section id="order-form" class="form-section">
         <div class="container">
             <div class="form-container">
-                <h2>Оставить запрос на поиск</h2>
+                <h2>Оставить запрос на архивный поиск</h2>
                 <p class="form-text">Опишите вашу ситуацию, и наш специалист свяжется с вами для первичного разбора.</p>
                 
-                <!-- В кавычки ниже мы позже вставим секретную ссылку для приема писем -->
-                <form action="#" method="POST">
-                    <div class="form-group">
-                        <label for="username">Ваше имя:</label>
-                        <input type="text" id="username" name="name" placeholder="Имя или псевдоним" required>
-                    </div>
+                <!-- НАЧАЛО ФОРМЫ ОТПРАВКИ (ИСПРАВЛЕНО) -->
+                <form action="https://web3forms.com" method="POST">
+                    <!-- Ваш личный ключ активации -->
+                    <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
 
                     <div class="form-group">
-                        <label for="userphone">Номер телефона / Мессенджер:</label>
-                        <input type="tel" id="userphone" name="phone" placeholder="+375 (29) XXX-XX-XX" required>
+                        <input type="text" name="name" placeholder="Ваше имя" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
                     </div>
-
                     <div class="form-group">
-                        <label for="useremail">Email для связи:</label>
-                        <input type="email" id="useremail" name="email" placeholder="your-email@example.com" required>
+                        <input type="text" name="contact" placeholder="Телефон / Мессенджер (Telegram, WhatsApp)" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
                     </div>
-
                     <div class="form-group">
-                        <label for="usermessage">Каких родственников ищете? (Год/место рождения, если известны):</label>
-                        <textarea id="usermessage" name="message" rows="4" placeholder="Например: Ищу линию дедушки по матери, проживал в Волковыске до 1939 года..."></textarea>
+                        <input type="email" name="email" placeholder="Email для связи" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
                     </div>
-
-                    <button type="submit" class="submit-btn">Отправить запрос</button>
-                    <p class="privacy-note">Нажимая кнопку, вы соглашаетесь на обработку данных. Ваши контакты скрыты от третьих лиц.</p>
+                    <div class="form-group">
+                        <textarea name="message" rows="5" placeholder="Каких родственников ищете? (Укажите ФИО, годы и места рождения предков, а также национальность, если известны)" required style="width: 100%; padding: 10px; margin-bottom: 15px; resize: vertical;"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn" style="cursor: pointer;">Начать поиск корней</button>
                 </form>
+                <!-- КОНЕЦ ФОРМЫ ОТПРАВКИ -->
+
             </div>
         </div>
     </section>
