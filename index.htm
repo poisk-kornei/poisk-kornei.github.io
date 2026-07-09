@@ -232,19 +232,24 @@
             font-family: inherit;
         }
 
+        /* Гарантированно видимая неоновая кнопка */
         .btn-submit-neon {
-            background-color: #ff33b8;
-            color: #ffffff;
+            background-color: #ff33b8 !important;
+            color: #ffffff !important;
             font-weight: 700;
             text-transform: uppercase;
-            border: none;
+            border: none !important;
             width: 100%;
-            padding: 18px;
+            padding: 18px 0;
             border-radius: 50px;
             font-size: 1.05rem;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(255,51,184,0.3);
+            box-shadow: 0 8px 20px rgba(255, 51, 184, 0.4);
             margin-top: 10px;
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            text-align: center;
         }
 
         @media(max-width: 850px) {
@@ -282,7 +287,7 @@
             </div>
             <div class="prog-card">
                 <h3>Еврейские корни</h3>
-                <p>Поиск по раввинатам, ревизским сказкам, личным делам и archives черты оседлости.</p>
+                <p>Поиск по раввинатам, ревизским сказкам, личным делам и архивам черты оседлости.</p>
             </div>
             <div class="prog-card">
                 <h3>Немецкие корни</h3>
@@ -304,13 +309,14 @@
             <div class="pro-form-wrapper">
                 <h4>Анкета поиска</h4>
                 
-                <form action="https://web3forms.com" method="POST">
+                <!-- Прямая HTML форма без JavaScript (100% надежность) -->
+                <form action="https://api.web3forms.com/submit" method="POST">
+                    
+                    <!-- Секретный ключ авторизации -->
                     <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
+                    
+                    <!-- Ссылка автоматического возврата пользователя на ваш сайт -->
                     <input type="hidden" name="redirect" value="https://github.io">
                     
                     <input type="text" name="name" class="form-input-field" placeholder="Ваше имя" required>
-                    <input type="text" name="contact" class="form-input-field" placeholder="Телефон / Telegram / WhatsApp" required>
-                    <input type="email" name="email" class="form-input-field" placeholder="Email для связи" required>
-                    <textarea name="message" rows="4" class="form-input-field form-textarea" placeholder="Кого вы ищете? (ФИО предков, годы, места рождения)" required></textarea>
-                    
-                    <button type="submit" class="btn-submit-neon">Отправить запрос</button>
+
