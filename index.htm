@@ -259,6 +259,7 @@
 
     <div class="main-wrapper">
 
+        <!-- 1. Верхний экран -->
         <section class="hero-grid">
             <div class="hero-left">
                 <h1>Архивный поиск предков</h1>
@@ -274,6 +275,7 @@
             </div>
         </section>
 
+        <!-- 2. Направления (4 полноценные карточки) -->
         <h2 class="section-header">Направления</h2>
         <section class="programmes-grid">
             <div class="prog-card">
@@ -289,58 +291,31 @@
                 <p>Розыск церковных книг колонистов и списков переселенцев для миграционных программ.</p>
             </div>
             <div class="prog-card pink-highlight">
-                <h3>Сложные кейсы</h3>
+                <h3>Сложные задачи</h3>
                 <p>Восстановление цепочки родства для подачи в ЗАГС даже при плохой сохранности фондов.</p>
             </div>
         </section>
 
+        <!-- 3. Нижний экран с формой запроса -->
         <section id="order-form" class="bottom-grid">
             <div class="bottom-info">
                 <h2>Форма запроса</h2>
                 <p>Оставьте свои контакты. Наш эксперт-генеалог проведет бесплатный анализ и свяжется с вами.</p>
             </div>
+            
             <div class="pro-form-wrapper">
                 <h4>Анкета поиска</h4>
                 
-                <!-- НАЧАЛО ТВОЕЙ ФОРМЫ (ВСТАВЛЯТЬ СТРОГО СЮДА) -->
+                <!-- Встроенная и исправленная форма отправки -->
                 <form action="https://web3forms.com" method="POST">
-                    <!-- Ваш ключ -->
+                    <!-- Ваш рабочий ключ доступа -->
                     <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
                     
-                    <!-- Перенаправление на ваш сайт после отправки -->
+                    <!-- Правильное перенаправление, чтобы остаться на сайте -->
                     <input type="hidden" name="redirect" value="https://github.io">
                     
                     <input type="text" name="name" class="form-input-field" placeholder="Ваше имя" required>
                     <input type="text" name="contact" class="form-input-field" placeholder="Телефон / Telegram / WhatsApp" required>
-                    <input type="email" name="form_email" class="form-input-field" placeholder="Email для связи" required>
-                    <textarea name="message" rows="4" class="form-input-field form-textarea" placeholder="Кого вы ищете? (Укажите ФИО предков, годы и места рождения)" required></textarea>
-                    
-                    <button type="submit" class="btn-submit-neon">Отправить запрос</button>
-                </form>
-                <!-- КОНЕЦ ФОРМЫ -->
-
-            </div>
-
-            
-            <div class="pro-form-wrapper">
-                <h4>Анкета поиска</h4>
-                <form action="https://web3forms.com" method="POST">
-                    <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
-                    
-                    <input type="text" name="name" class="form-input-field" placeholder="Ваше имя" required>
-                    <input type="text" name="contact" class="form-input-field" placeholder="Телефон / Telegram / WhatsApp" required>
-                    <input type="email" name="form_email" class="form-input-field" placeholder="Email для связи" required>
-                    <textarea name="message" rows="4" class="form-input-field form-textarea" placeholder="Кого вы ищете? (ФИО предков, годы и места рождения)" required></textarea>
-                    
-                    <button type="submit" class="btn-submit-neon">Отправить запрос</button>
-                </form>
-            </div>
-        </section>
-
-    </div>
-
-</body>
-</html>
 
 
                     
