@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Архивный поиск предков | Генеалогия</title>
     <style>
-        /* Премиум-дизайн по референсу: неоновые акценты и асимметричная сетка */
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f7f6f0; /* Благородный мягкий фон */
+            background-color: #f7f6f0;
             color: #111111;
             overflow-x: hidden;
         }
@@ -22,20 +21,6 @@
             position: relative;
         }
 
-        /* Мягкий неоновый градиент на фоне, как на фото */
-        .neon-aura {
-            position: absolute;
-            top: 20%;
-            right: -100px;
-            width: 450px;
-            height: 450px;
-            background: radial-gradient(circle, rgba(255,51,184,0.3) 0%, rgba(218,255,51,0.3) 100%);
-            filter: blur(90px);
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        /* 1. ВЕРХНИЙ ЭКРАН - АСИММЕТРИЧНАЯ СЕТКА */
         .hero-grid {
             display: grid;
             grid-template-columns: 1.8fr 1fr;
@@ -43,7 +28,6 @@
             margin-bottom: 40px;
         }
 
-        /* Главный фиолетовый баннер */
         .hero-left {
             background-color: #4f33ff;
             border-radius: 28px;
@@ -55,6 +39,7 @@
             min-height: 340px;
             box-sizing: border-box;
         }
+
         .hero-left h1 {
             font-size: 3.2rem;
             font-weight: 900;
@@ -63,6 +48,7 @@
             margin: 0 0 35px 0;
             letter-spacing: -1px;
         }
+
         .btn-get-started {
             background-color: #daff33;
             color: #111111 !important;
@@ -77,17 +63,13 @@
             letter-spacing: 0.5px;
             transition: all 0.2s ease;
         }
-        .btn-get-started:hover {
-            transform: scale(1.03);
-            box-shadow: 0 8px 25px rgba(218,255,51,0.4);
-        }
 
-        /* Правая колонка баннера */
         .hero-right-column {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
+
         .box-mini-purple {
             background-color: #5633ff;
             border-radius: 24px;
@@ -97,6 +79,7 @@
             line-height: 1.4;
             font-weight: 500;
         }
+
         .box-mini-lime {
             background-color: #daff33;
             border-radius: 24px;
@@ -111,7 +94,6 @@
             letter-spacing: -0.5px;
         }
 
-        /* 2. СРЕДНИЙ ЭКРАН - 4 ТАБЛИЧКИ В РЯД (СОВРЕМЕННЫЙ ТЕКСТ) */
         .section-header {
             font-size: 2.4rem;
             font-weight: 900;
@@ -120,6 +102,7 @@
             line-height: 1.1;
             letter-spacing: -1px;
         }
+
         .programmes-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -127,6 +110,7 @@
             position: relative;
             z-index: 2;
         }
+
         .prog-card {
             background-color: #4f33ff;
             border-radius: 24px;
@@ -136,11 +120,8 @@
             flex-direction: column;
             min-height: 260px;
             box-sizing: border-box;
-            transition: transform 0.3s ease;
         }
-        .prog-card:hover {
-            transform: translateY(-5px);
-        }
+
         .prog-card h3 {
             font-size: 1.25rem;
             font-weight: 800;
@@ -148,24 +129,23 @@
             margin-top: 0;
             margin-bottom: 20px;
             line-height: 1.2;
-            color: #ffffff;
             border-bottom: 2px solid rgba(255,255,255,0.1);
             padding-bottom: 12px;
             letter-spacing: -0.5px;
         }
+
         .prog-card p {
             font-size: 0.95rem;
             line-height: 1.4;
             color: #e3ddff;
             margin: 0;
-            font-weight: 400;
         }
-        /* Розовая акцентная табличка */
+
         .prog-card.pink-highlight {
             background-color: #ff33b8;
         }
 
-        /* 3. НИЖНИЙ ЭКРАН - БЛОК С ГЛАВНОЙ ФОРМОЙ */
+        /* ТАБЛИЦА ЗАПРОСА СБОКУ (Желто-зеленая секция) */
         .bottom-grid {
             display: grid;
             grid-template-columns: 1.1fr 1fr;
@@ -176,9 +156,8 @@
             margin-top: 50px;
             color: #111111;
             align-items: center;
-            position: relative;
-            z-index: 2;
         }
+
         .bottom-info h2 {
             font-size: 3rem;
             font-weight: 900;
@@ -188,6 +167,7 @@
             margin-bottom: 20px;
             letter-spacing: -1px;
         }
+
         .bottom-info p {
             font-size: 1.15rem;
             line-height: 1.5;
@@ -195,7 +175,7 @@
             font-weight: 500;
         }
 
-        /* Современная ровная форма в рамке */
+        /* ФОРМА ИЗ ТВОЕГО ПРИМЕРА (Фиолетовая плашка) */
         .pro-form-wrapper {
             background-color: #4f33ff;
             border-radius: 24px;
@@ -204,6 +184,7 @@
             box-shadow: 0 20px 40px rgba(79,51,255,0.25);
             box-sizing: border-box;
         }
+
         .pro-form-wrapper h4 {
             font-size: 1.6rem;
             font-weight: 800;
@@ -211,36 +192,27 @@
             margin-bottom: 25px;
             text-transform: uppercase;
             text-align: center;
-            letter-spacing: -0.5px;
         }
+
         .form-input-field {
             width: 100%;
             padding: 16px 24px;
             background-color: rgba(255,255,255,0.08);
             border: 2px solid rgba(255,255,255,0.15);
-            border-radius: 50px; /* Круглые рамки */
+            border-radius: 50px;
             color: #ffffff;
             font-size: 1rem;
             margin-bottom: 16px;
             box-sizing: border-box;
             outline: none;
-            transition: all 0.2s ease;
         }
-        .form-input-field::placeholder {
-            color: #bfaeff;
-        }
-        .form-input-field:focus {
-            border-color: #daff33;
-            background-color: rgba(255,255,255,0.15);
-            box-shadow: 0 0 10px rgba(218,255,51,0.2);
-        }
+
         .form-textarea {
             border-radius: 20px;
             resize: none;
             font-family: inherit;
         }
-        
-        /* Кнопка отправки */
+
         .btn-submit-neon {
             background-color: #ff33b8;
             color: #ffffff;
@@ -254,28 +226,19 @@
             cursor: pointer;
             box-shadow: 0 8px 20px rgba(255,51,184,0.3);
             margin-top: 10px;
-            transition: all 0.2s ease;
-            letter-spacing: 0.5px;
-        }
-        .btn-submit-neon:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(255,51,184,0.5);
         }
 
-        /* Адаптивность для мобильных телефонов */
         @media(max-width: 850px) {
             .hero-grid, .programmes-grid, .bottom-grid { grid-template-columns: 1fr; }
             .hero-left h1 { font-size: 2.4rem; }
-            .bottom-grid { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
 
     <div class="main-wrapper">
-        <div class="neon-aura"></div>
 
-        <!-- 1. Верхний экран: Стильное асимметричное меню -->
+        <!-- 1. Верхние блоки -->
         <section class="hero-grid">
             <div class="hero-left">
                 <h1>Архивный поиск предков в Беларуси</h1>
@@ -291,7 +254,7 @@
             </div>
         </section>
 
-        <!-- 2. Средний экран: 4 современные ровные таблички с улучшенным текстом -->
+        <!-- 2. Таблички в ряд -->
         <h2 class="section-header">Направления поиска</h2>
         <section class="programmes-grid">
             <div class="prog-card">
@@ -308,6 +271,37 @@
             </div>
             <div class="prog-card pink-highlight">
                 <h3>Сложные задачи</h3>
+                <p>Восстанавливаем разорванные цепочки родства для судов и ЗАГС по нотариальной доверенности даже при утере фондов.</p>
+            </div>
+        </section>
+
+        <!-- 3. ТАБЛИЦА С ФОРМОЙ ЗАПРОСА (ОНА ТУТ!) -->
+        <section id="order-form" class="bottom-grid">
+            <div class="bottom-info">
+                <h2>Форма отправки запроса</h2>
+                <p>Заполните анкету справа. Наш эксперт-генеалог проведет первичный бесплатный анализ документов и свяжется с вами для разбора дела.</p>
+            </div>
+            
+            <div class="pro-form-wrapper">
+                <h4>Анкета поиска</h4>
+                <form action="https://web3forms.com" method="POST">
+                    <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
+                    
+                    <input type="text" name="name" class="form-input-field" placeholder="Ваше имя" required>
+                    <input type="text" name="contact" class="form-input-field" placeholder="Телефон / Telegram / WhatsApp" required>
+                    <input type="email" name="email" class="form-input-field" placeholder="Email для связи" required>
+                    <textarea name="message" rows="4" class="form-input-field form-textarea" placeholder="Кого вы ищете? (Укажите ФИО предков, годы и места рождения, если известны)" required></textarea>
+                    
+                    <button type="submit" class="btn-submit-neon">Начать поиск корней</button>
+                </form>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
+
 
                     
 
