@@ -202,7 +202,6 @@
             color: #ffffff;
             box-shadow: 0 20px 40px rgba(79,51,255,0.25);
             box-sizing: border-box;
-            position: relative;
         }
 
         .pro-form-wrapper h4 {
@@ -249,13 +248,6 @@
             display: block;
         }
 
-        #form-status-box {
-            margin-top: 15px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
         @media(max-width: 850px) {
             .hero-grid, .programmes-grid, .bottom-grid { grid-template-columns: 1fr; }
             .hero-left h1 { font-size: 2.4rem; }
@@ -266,7 +258,7 @@
 
     <div class="main-wrapper">
 
-        <!-- 1. Верхний экран -->
+        <!-- 1. Главный экран лендинга -->
         <section class="hero-grid">
             <div class="hero-left">
                 <h1>Архивный поиск предков</h1>
@@ -282,7 +274,7 @@
             </div>
         </section>
 
-        <!-- 2. Направления -->
+        <!-- 2. Сетка из 4 табличек направлений поиска -->
         <h2 class="section-header">Направления</h2>
         <section class="programmes-grid">
             <div class="prog-card">
@@ -303,7 +295,7 @@
             </div>
         </section>
 
-        <!-- 3. Нижний блок с умной формой -->
+        <!-- 3. Нижняя таблица запроса с полноценной анкетой -->
         <section id="order-form" class="bottom-grid">
             <div class="bottom-info">
                 <h2>Форма запроса</h2>
@@ -312,12 +304,39 @@
             
             <div class="pro-form-wrapper">
                 <h4>Анкета поиска</h4>
-                
-                <!-- ID формы изменен для работы JavaScript без перезагрузок страницы -->
-                <form id="ajax-secure-form">
-                    <!-- Ваш личный активный ключ -->
+                <form action="https://web3forms.com" method="POST">
+                    
+                    <!-- Ваш личный проверенный активный ключ -->
                     <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
+                    
+                    <!-- Ссылка перенаправления обратно на ваш сайт БЕЗ ошибки 404 -->
+                    <input type="hidden" name="redirect" value="https://github.io">
                     
                     <input type="text" name="name" class="form-input-field" placeholder="Ваше имя" required>
                     <input type="text" name="contact" class="form-input-field" placeholder="Телефон / Telegram / WhatsApp" required>
-                    <input type="email" name="email" class="form-input-field" placeholder="Email для связи" required>
+                    <input type="email" name="form_email" class="form-input-field" placeholder="Email для связи" required>
+                    <textarea name="message" rows="4" class="form-input-field form-textarea" placeholder="Кого вы ищете? (ФИО предков, известные годы и места рождения)" required></textarea>
+                    
+                    <!-- Кнопка отправки анкеты -->
+                    <button type="submit" class="btn-submit-neon">Отправить запрос</button>
+                </form>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Автоматическое исправление адресов, чтобы не было ошибки 404 и переброса -->
+    <script>
+        const targetForm = document.querySelector('form');
+        if (targetForm) {
+            targetForm.setAttribute('action', 'https://web3forms.com');
+            const redirectField = targetForm.querySelector('input[name="redirect"]');
+            if (redirectField) {
+                redirectField.value = 'https://github.io';
+            }
+        }
+    </script>
+
+</body>
+</html>
+
