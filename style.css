@@ -1,67 +1,28 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Архивный поиск предков в Беларуси</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header class="hero">
-        <div class="container">
-            <h1>Архивный поиск предков в Беларуси</h1>
-            <p class="subtitle">Поможем найти архивные документы ваших предков для успешного получения Карты поляка, гражданства или подтверждения происхождения.</p>
-            <a href="#order-form" class="btn">Консультация бесплатно</a>
-        </div>
-    </header>
+html { scroll-behavior: smooth; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; color: #2D3748; line-height: 1.6; background-color: #F7FAFC; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+.hero { background: linear-gradient(135deg, #1A365D 0%, #2A4365 100%); color: white; padding: 100px 0 120px 0; text-align: center; }
+.hero h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 20px; }
+.subtitle { font-size: 1.25rem; max-width: 700px; margin: 0 auto 40px auto; color: #E2E8F0; }
+.btn { display: inline-block; background-color: #DC2626; color: white; padding: 16px 40px; font-size: 1.1rem; font-weight: 700; text-decoration: none; border-radius: 8px; box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4); transition: all 0.2s ease; }
+.btn:hover { background-color: #B91C1C; transform: translateY(-2px); }
+.features { padding: 80px 0; text-align: center; }
+.section-title { font-size: 2rem; color: #1A365D; margin-bottom: 40px; font-weight: 700; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+.card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: left; border-top: 4px solid #2B6CB0; }
+.card h3 { margin-bottom: 15px; color: #2B6CB0; font-size: 1.25rem; }
+.form-section { background-color: #EDF2F7; padding: 80px 0; }
+.form-container { max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+.form-container h2 { color: #1A365D; margin-bottom: 10px; text-align: center; }
+.form-text { text-align: center; color: #718096; margin-bottom: 30px; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; }
+.form-group input, .form-group textarea { width: 100%; padding: 14px; border: 1px solid #CBD5E0; border-radius: 8px; font-size: 1rem; background-color: #F7FAFC; }
+.submit-btn { width: 100%; background-color: #2B6CB0; color: white; border: none; padding: 16px; font-size: 1.1rem; font-weight: 700; border-radius: 8px; cursor: pointer; }
+.submit-btn:hover { background-color: #2C5282; }
+.privacy-note { font-size: 0.8rem; color: #A0AEC0; text-align: center; margin-top: 15px; }
+@media (max-width: 768px) { .hero h1 { font-size: 2rem; } .hero { padding: 60px 0 80px 0; } .form-container { padding: 25px; } }
 
-    <section class="features">
-        <div class="container">
-            <h2 class="section-title">Направления поиска</h2>
-            <div class="grid">
-                <div class="card"><h3>🔍 Польские корни</h3><p>Розыск выписей из метрик, списков избирателей, документов о депортации.</p></div>
-                <div class="card"><h3>🔍 Еврейские корни</h3><p>Поиск по раввинатам, ревизским сказкам, личным делам.</p></div>
-                <div class="card"><h3>🔍 Немецкие корни</h3><p>Розыск церковных книг колонистов и списков переселенцев.</p></div>
-                <div class="card" style="border-top: 4px solid #dc2626;"><h3>⚡ Сложные задачи</h3><p>Восстановление цепочки родства для подачи в ЗАГС (доверенность).</p></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="order-form" class="form-section">
-        <div class="container">
-            <div class="form-container">
-                <h2>Оставить запрос на поиск</h2>
-                <form id="contact-form" method="POST">
-                    <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
-                    <div class="form-group"><label>Имя:</label><input type="text" name="name" required></div>
-                    <div class="form-group"><label>Контакты:</label><input type="text" name="contact" placeholder="+375..." required></div>
-                    <div class="form-group"><label>Тип корней:</label><select name="root_type"><option>Польские</option><option>Еврейские</option><option>Немецкие</option></select></div>
-                    <div class="form-group"><label>Родственники:</label><textarea name="message" rows="3" required></textarea></div>
-                    <button type="submit" class="submit-btn">Начать поиск</button>
-                    <div id="form-message"></div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const msgBox = document.getElementById('form-message');
-            msgBox.textContent = 'Отправка...';
-            fetch('https://web3forms.com', {
-                method: 'POST',
-                body: new FormData(this)
-            }).then(() => {
-                msgBox.style.color = '#38A169';
-                msgBox.textContent = 'Успешно отправлено!';
-                this.reset();
-            }).catch(() => {
-                msgBox.style.color = '#E53E3E';
-                msgBox.textContent = 'Ошибка, попробуйте снова.';
-            });
-        });
-    </script>
-</body>
 </html>
 
