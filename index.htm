@@ -232,27 +232,24 @@
             font-family: inherit;
         }
 
+        /* Гарантированно видимая неоновая кнопка */
         .btn-submit-neon {
-            background-color: #ff33b8;
-            color: #ffffff;
+            background-color: #ff33b8 !important;
+            color: #ffffff !important;
             font-weight: 700;
             text-transform: uppercase;
-            border: none;
+            border: none !important;
             width: 100%;
-            padding: 18px;
+            padding: 18px 0;
             border-radius: 50px;
             font-size: 1.05rem;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(255, 51, 184, 0.3);
+            box-shadow: 0 8px 20px rgba(255, 51, 184, 0.4);
             margin-top: 10px;
-            display: block;
-        }
-
-        #form-result {
-            margin-top: 15px;
-            font-weight: bold;
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
             text-align: center;
-            font-size: 1.1rem;
         }
 
         @media(max-width: 850px) {
@@ -265,7 +262,7 @@
 
     <div class="main-wrapper">
 
-        <!-- 1. Верхний экран -->
+        <!-- 1. Верхний блок лендинга -->
         <section class="hero-grid">
             <div class="hero-left">
                 <h1>Архивный поиск предков</h1>
@@ -281,7 +278,7 @@
             </div>
         </section>
 
-        <!-- 2. Направления -->
+        <!-- 2. Сетка направлений (4 карточки) -->
         <h2 class="section-header">Направления</h2>
         <section class="programmes-grid">
             <div class="prog-card">
@@ -302,7 +299,7 @@
             </div>
         </section>
 
-        <!-- 3. Нижний экран и полная анкета -->
+        <!-- 3. Нижний блок с текстом и анкетой -->
         <section id="order-form" class="bottom-grid">
             <div class="bottom-info">
                 <h2>Форма запроса</h2>
@@ -312,11 +309,13 @@
             <div class="pro-form-wrapper">
                 <h4>Анкета поиска</h4>
                 
-                <form id="ajax-form" method="POST">
+                <!-- Прямая HTML форма без JavaScript (100% надежность) -->
+                <form action="https://api.web3forms.com/submit" method="POST">
+                    
+                    <!-- Секретный ключ авторизации -->
                     <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
                     
-                    <input type="text" name="name" class="form-input-field" placeholder="Ваше имя" required>
-                    <input type="email" name="form_email" class="form-input-field" placeholder="Email для связи" required>
-                    <input type="text" name="contact" class="form-input-field" placeholder="Телефон / Telegram / WhatsApp" required>
-                    <textarea name="message" rows="4" class="form-input-field form-textarea" placeholder="Сообщение (ФИО предков, годы, места рождения, национальность)" required></textarea>
+                    <!-- Ссылка автоматического возврата пользователя на ваш сайт -->
+                    <input type="hidden" name="redirect" value="https://github.io">
                     
+                    <input type="text" name="name" class="form-input-field" placeholder="Ваше имя" required>
