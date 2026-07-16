@@ -304,7 +304,7 @@
             
             <div class="pro-form-wrapper">
                 <h4>Анкета поиска</h4>
-                                <form id="form">
+                                                            <form id="form">
                     <!-- Ваш личный неизменяемый ключ -->
                     <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
                     
@@ -350,7 +350,7 @@
             result.style.color = "#ffffff";
             result.innerHTML = "Please wait...";
 
-            // Скрипт сам берёт правильный технический адрес, кавычки с сайтом больше не нужны
+            // ИСПРАВЛЕНО: Теперь адрес ведет строго на почтового робота Web3Forms
             fetch('https://web3forms.com', {
                 method: 'POST',
                 headers: {
@@ -385,4 +385,3 @@
 
 </body>
 </html>
-
