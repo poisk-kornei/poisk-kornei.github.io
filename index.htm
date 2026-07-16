@@ -304,27 +304,83 @@
             
             <div class="pro-form-wrapper">
                 <h4>Анкета поиска</h4>
-                <!-- ИСПРАВЛЕНО: Прямой и точный адрес отправки -->
-                <form action="https://web3forms.com" method="POST">
-                    
-                    <!-- Ваш личный активный ключ -->
+                                <form id="form">
+                    <!-- Ваш личный неизменяемый ключ -->
                     <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
-                    
-                    <!-- ИСПРАВЛЕНО: Ссылка возвращает строго на ваш работающий сайт -->
-                    <input type="hidden" name="redirect" value="https://github.io">
                     
                     <input type="text" name="name" class="form-input-field" placeholder="Ваше имя" required>
                     <input type="text" name="contact" class="form-input-field" placeholder="Телефон / Telegram / WhatsApp" required>
-                    <input type="email" name="form_email" class="form-input-field" placeholder="Email для связи" required>
-                    <textarea name="message" rows="4" class="form-input-field form-textarea" placeholder="Кого вы ищете? (ФИО предков, известные годы и места рождения)" required></textarea>
+                    <input type="email" name="email" class="form-input-field" placeholder="Email для связи" required>
                     
-                    <!-- Кнопка отправки анкеты -->
+                    <select name="ethnicity" class="form-input-field" style="background-color: rgba(255,255,255,0.08); color: #bfaeff; border: 2px solid rgba(255,255,255,0.15); cursor: pointer;" required>
+                        <option value="" disabled selected style="color: #111111;">Какую национальность предков ищете?</option>
+                        <option value="Польская" style="color: #111111;">Польские корни (Карта поляка)</option>
+                        <option value="Еврейская" style="color: #111111;">Еврейские корни</option>
+                        <option value="Немецкая" style="color: #111111;">Немецкие корни</option>
+                        <option value="Сложный кейс" style="color: #111111;">Сложный кейс (Восстановление родства)</option>
+                    </select>
+
+                    <div style="margin-bottom: 20px; text-align: left; padding-left: 15px; font-size: 0.95rem; color: #e3ddff; display: flex; align-items: center; gap: 10px;">
+                        <input type="checkbox" name="power_of_attorney" id="attorney_check" value="Готов предоставить" style="width: auto; margin: 0; cursor: pointer;">
+                        <label for="attorney_check" style="cursor: pointer;">Готов предоставить нотариальную доверенность для ЗАГС и архивов</label>
+                    </div>
+
+                    <textarea name="message" rows="4" class="form-input-field form-textarea" placeholder="Известные ФИО, годы и места рождения предков в Беларуси" required></textarea>
+                    
                     <button type="submit" class="btn-submit-neon">Отправить запрос</button>
+                    <div id="result"></div>
                 </form>
             </div>
         </section>
 
     </div>
 
+    <!-- Ваш личный рабочий скрипт бесшумной отправки на Mail.ru -->
+    <script>
+        const form = document.getElementById('form');
+        const result = document.getElementById('result');
+
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const formData = new FormData(form);
+          const object = Object.fromEntries(formData);
+          const json = JSON.stringify(object);
+          result.style.display = "block";
+          result.style.color = "#ffffff";
+          result.innerHTML = "Please wait..."
+
+            fetch('https://web3forms.com', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: json
+                })
+                .then(async (response) => {
+                    let json = await response.json();
+                    if (response.status == 200) {
+                        result.style.color = "#daff33"; // Лимонный цвет успеха
+                        result.innerHTML = "Успешно отправлено!";
+                    } else {
+                        console.log(response);
+                        result.style.color = "#ff33b8";
+                        result.innerHTML = json.message;
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                    result.style.color = "#ff33b8";
+                    result.innerHTML = "Something went wrong!";
+                })
+                .then(function() {
+                    form.reset();
+                    setTimeout(() => {
+                        result.style.display = "none";
+                    }, 4000);
+                });
+        });
+    </script>
+
 </body>
-</html>  
+</html>
