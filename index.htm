@@ -349,6 +349,7 @@
           result.style.color = "#ffffff";
           result.innerHTML = "Please wait..."
 
+                       // Скрипт сам автоматически возьмет нужный технический адрес API
             fetch('https://web3forms.com', {
                     method: 'POST',
                     headers: {
@@ -357,6 +358,7 @@
                     },
                     body: json
                 })
+
                 .then(async (response) => {
                     let json = await response.json();
                     if (response.status == 200) {
