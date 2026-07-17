@@ -305,14 +305,10 @@
             <div class="pro-form-wrapper">
                 <h4>Анкета поиска</h4>
                 
-                <!-- Чистый HTML метод строго по инструкции Web3Forms -->
-                <form action="https://api.web3forms.com/submit" method="POST">
-                    
-                    <!-- СТРОГО access_key (не apikey!), чтобы сервер не выдавал ошибку 405 -->
+                <!-- Тег form без методов action и post, чтобы у браузера не было даже мысли перезагрузить страницу -->
+                <form id="form">
+                    <!-- Ваш личный неизменяемый ключ -->
                     <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
-                    
-                    <!-- Ссылка, куда робот вернет человека после успешной отправки -->
-                    <input type="hidden" name="redirect" value="https://github.io">
                     
                     <input type="text" name="name" class="form-input-field" placeholder="Ваше имя" required>
                     <input type="text" name="contact" class="form-input-field" placeholder="Телефон / Telegram / WhatsApp" required>
@@ -331,16 +327,67 @@
                         <label for="attorney_check" style="cursor: pointer;">Готов предоставить нотариальную доверенность для ЗАГС и архивов</label>
                     </div>
 
-                    <textarea name="message" rows="4" class="form-input-field form-textarea" placeholder="Известные ФИО, годы и места рождения предков в Беларуси" required></textarea>
+                    <textarea name="message" required class="form-input-field form-textarea" placeholder="Известные ФИО, годы и места рождения предков в Беларуси"></textarea>
                     
-                    <!-- Кнопка отправки -->
                     <button type="submit" class="btn-submit-neon">Отправить запрос</button>
+                    <!-- Блок статуса, куда скрипт напишет ответ -->
+                    <div id="result"></div>
                 </form>
             </div>
         </section>
 
     </div>
 
+    <!-- Обновленный скрипт, который глушит любые перенаправления и шлет AJAX-запрос -->
+    <script>
+        const form = document.getElementById('form');
+        const result = document.getElementById('result');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Полная и глухая блокировка любых переходов на другие сайты
+            
+            result.style.display = "block";
+            result.style.color = "#ffffff";
+            result.innerHTML = "Please wait...";
+
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            fetch('https://web3forms.com', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                let resJson = await response.json();
+                if (response.status == 200) {
+                    result.style.color = "#daff33"; // Тот самый красивый лимонный цвет успеха
+                    result.innerHTML = "Успешно отправлено!";
+                    form.reset(); // Очищаем анкету
+                } else {
+                    result.style.color = "#ff33b8";
+                    result.innerHTML = resJson.message || "Ошибка отправки.";
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                result.style.color = "#ff33b8";
+                result.innerHTML = "Ошибка сети. Попробуйте позже.";
+            })
+            .then(function() {
+                // Плавное скрытие надписи через 4 секунды
+                setTimeout(() => {
+                    result.style.display = "none";
+                }, 4000);
+            });
+        });
+    </script>
+
 </body>
 </html>
+
 
