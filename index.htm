@@ -304,11 +304,13 @@
             
             <div class="pro-form-wrapper">
                 <h4>Анкета поиска</h4>
-                <!-- ИСПРАВЛЕНО: Добавлен обязательный технический адрес и правильный ID -->
                 <form action="https://web3forms.com" method="POST" id="genealogy-ajax-form">
                     
                     <!-- Ваш личный активный ключ -->
                     <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
+                    
+                    <!-- КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: говорим серверу принять AJAX и не перенаправлять браузер -->
+                    <input type="hidden" name="submit_type" value="json">
                     
                     <input type="text" name="name" class="form-input-field" placeholder="Ваше имя" required>
                     <input type="text" name="contact" class="form-input-field" placeholder="Телефон / Telegram / WhatsApp" required>
@@ -330,7 +332,6 @@
                     <textarea name="message" rows="4" class="form-input-field form-textarea" placeholder="Известные ФИО, годы и места рождения предков в Беларуси" required></textarea>
                     
                     <button type="submit" class="btn-submit-neon">Отправить запрос</button>
-                    <!-- Блок для вывода статуса успеха прямо на странице -->
                     <div id="ajax-result-message" style="margin-top: 15px; text-align: center; font-weight: bold; font-size: 1.1rem;"></div>
                 </form>
             </div>
@@ -338,14 +339,13 @@
 
     </div>
 
-    <!-- Мощный скрипт, который намертво блокирует уход с сайта и выводит надпись об успехе -->
     <script>
         const myForm = document.getElementById('genealogy-ajax-form');
         const myResult = document.getElementById('ajax-result-message');
 
         if (myForm) {
             myForm.addEventListener('submit', function(e) {
-                e.preventDefault(); // Железный запрет браузеру переходить на любые другие сайты
+                e.preventDefault(); // Полная блокировка переходов
                 
                 myResult.style.color = "#ffffff";
                 myResult.textContent = "Please wait...";
@@ -365,9 +365,9 @@
                 .then(async (response) => {
                     let resData = await response.json();
                     if (response.status == 200) {
-                        myResult.style.color = "#daff33"; // Красивый лимонный цвет успеха
+                        myResult.style.color = "#daff33"; // Лимонный цвет успеха
                         myResult.textContent = "Успешно отправлено!";
-                        myForm.reset(); // Полностью очищаем поля анкеты
+                        myForm.reset();
                     } else {
                         myResult.style.color = "#ff33b8";
                         myResult.textContent = resData.message || "Ошибка сервера.";
@@ -376,7 +376,7 @@
                 .catch(error => {
                     console.log(error);
                     myResult.style.color = "#ff33b8";
-                    myResult.textContent = "Ошибка отправки. Попробуйте еще раз.";
+                    myResult.textContent = "Ошибка отправки.";
                 })
                 .then(function() {
                     setTimeout(() => {
