@@ -305,18 +305,18 @@
             <div class="pro-form-wrapper">
                 <h4>Анкета поиска</h4>
                 
-                <!-- Официальный метод отправки Web3Forms для статичных сайтов -->
-                <form action="https://web3forms.com" method="POST">
+                <!-- Чистый HTML метод строго по инструкции Web3Forms -->
+                <form action="https://api.web3forms.com/submit" method="POST">
                     
-                    <!-- Ваш личный неизменяемый ключ -->
+                    <!-- СТРОГО access_key (не apikey!), чтобы сервер не выдавал ошибку 405 -->
                     <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
                     
-                    <!-- ЧТОБЫ НЕ БЫЛО ПЕРЕБРОСА: робот плавно вернет человека на ваш главный сайт -->
+                    <!-- Ссылка, куда робот вернет человека после успешной отправки -->
                     <input type="hidden" name="redirect" value="https://github.io">
                     
                     <input type="text" name="name" class="form-input-field" placeholder="Ваше имя" required>
                     <input type="text" name="contact" class="form-input-field" placeholder="Телефон / Telegram / WhatsApp" required>
-                    <input type="email" name="form_email" class="form-input-field" placeholder="Email для связи" required>                    
+                    <input type="email" name="email" class="form-input-field" placeholder="Email для связи" required>                    
                     
                     <select name="ethnicity" class="form-input-field" style="background-color: rgba(255,255,255,0.08); color: #bfaeff; border: 2px solid rgba(255,255,255,0.15); cursor: pointer;" required>
                         <option value="" disabled selected style="color: #111111;">Какую национальность предков ищете?</option>
@@ -333,7 +333,7 @@
 
                     <textarea name="message" rows="4" class="form-input-field form-textarea" placeholder="Известные ФИО, годы и места рождения предков в Беларуси" required></textarea>
                     
-                    <!-- Ваша рабочая розовая кнопка отправки -->
+                    <!-- Кнопка отправки -->
                     <button type="submit" class="btn-submit-neon">Отправить запрос</button>
                 </form>
             </div>
@@ -343,3 +343,4 @@
 
 </body>
 </html>
+
