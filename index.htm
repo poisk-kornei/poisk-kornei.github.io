@@ -305,9 +305,16 @@
             <div class="pro-form-wrapper">
                 <h4>Анкета поиска</h4>
                 
-                <!-- Чистый, надежный HTML-метод без капризных скриптов -->
-                <form action="https://pageclip.co" method="POST">
+                <!-- Официальный адрес шлюза API Web3Forms (без JavaScript, чтобы не было ошибки сети) -->
+                <form action="https://web3forms.com" method="POST">
                     
+                    <!-- Ваш личный неизменяемый рабочий ключ -->
+                    <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
+                    
+                    <!-- Ссылка, которая вернет человека строго на вашу главную страницу после отправки -->
+                    <input type="hidden" name="redirect" value="https://github.io">
+                    
+                    <!-- Полная анкета со всеми вашими данными -->
                     <input type="text" name="name" class="form-input-field" placeholder="Ваше имя" required>
                     <input type="text" name="contact" class="form-input-field" placeholder="Телефон / Telegram / WhatsApp" required>
                     <input type="email" name="email" class="form-input-field" placeholder="Email для связи" required>                    
@@ -327,7 +334,7 @@
 
                     <textarea name="message" required class="form-input-field form-textarea" placeholder="Известные ФИО, годы и места рождения предков в Беларуси"></textarea>
                     
-                    <!-- Розовая кнопка, которая теперь точно отправит данные -->
+                    <!-- Ваша рабочая розовая кнопка отправки запроса -->
                     <button type="submit" class="btn-submit-neon">Отправить запрос</button>
                 </form>
             </div>
@@ -337,6 +344,7 @@
 
 </body>
 </html>
+
 
 
 
