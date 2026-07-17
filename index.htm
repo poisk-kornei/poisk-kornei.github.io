@@ -304,19 +304,13 @@
             
             <div class="pro-form-wrapper">
                 <h4>Анкета поиска</h4>
-                
-                <!-- 1. ИСПРАВЛЕНО: Прямой адрес робота API, чтобы хостинг GitHub не выдавал ошибку 405 -->
-                <form action="https://web3forms.com" method="POST">
-                    
-                    <!-- Ваш личный неизменяемый рабочий ключ -->
+                <form id="form">
+                    <!-- Ваш личный неизменяемый ключ -->
                     <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
                     
-                    <!-- 2. ИСПРАВЛЕНО: Ссылка автоматического возврата строго на ваш главный рабочий сайт -->
-                    <input type="hidden" name="redirect" value="https://github.io">
-                    
-                    <!-- Полная анкета со всеми вашими данными -->
                     <input type="text" name="name" class="form-input-field" placeholder="Ваше имя" required>
                     <input type="text" name="contact" class="form-input-field" placeholder="Телефон / Telegram / WhatsApp" required>
+                    <!-- ИСПРАВЛЕНО: name="email" строго по регламенту Web3Forms -->
                     <input type="email" name="email" class="form-input-field" placeholder="Email для связи" required>                    
                     
                     <select name="ethnicity" class="form-input-field" style="background-color: rgba(255,255,255,0.08); color: #bfaeff; border: 2px solid rgba(255,255,255,0.15); cursor: pointer;" required>
@@ -334,13 +328,62 @@
 
                     <textarea name="message" required class="form-input-field form-textarea" placeholder="Известные ФИО, годы и места рождения предков в Беларуси"></textarea>
                     
-                    <!-- Ваша рабочая розовая кнопка отправки запроса -->
                     <button type="submit" class="btn-submit-neon">Отправить запрос</button>
+                    <div id="result"></div>
                 </form>
             </div>
         </section>
 
     </div>
+
+    <!-- Ваш личный рабочий скрипт бесшумной отправки на Mail.ru -->
+    <script>
+        const form = document.getElementById('form');
+        const result = document.getElementById('result');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Полная и глухая блокировка любых переходов на другие сайты
+            
+            result.style.display = "block";
+            result.style.color = "#ffffff";
+            result.innerHTML = "Please wait...";
+
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            // Отправляем строго на правильный робот-адрес API
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                let resJson = await response.json();
+                if (response.status == 200) {
+                    result.style.color = "#daff33"; // Лимонный цвет успеха
+                    result.innerHTML = "Успешно отправлено!";
+                    form.reset(); // Очищаем анкету
+                } else {
+                    result.style.color = "#ff33b8";
+                    result.innerHTML = resJson.message || "Ошибка сервера.";
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                result.style.color = "#ff33b8";
+                result.innerHTML = "Something went wrong!";
+            })
+            .then(function() {
+                setTimeout(() => {
+                    result.style.display = "none";
+                }, 4000);
+            });
+        });
+    </script>
 
 </body>
 </html>
