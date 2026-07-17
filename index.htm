@@ -295,7 +295,7 @@
             </div>
         </section>
 
-<!-- 3. Нижняя таблица запроса с полноценной анкеты -->
+<!-- 3. Нижняя таблица запроса с полноценной анкетой -->
         <section id="order-form" class="bottom-grid">
             <div class="bottom-info">
                 <h2>Форма запроса</h2>
@@ -305,10 +305,8 @@
             <div class="pro-form-wrapper">
                 <h4>Анкета поиска</h4>
                 
-                <!-- Чистая HTML форма с вашим ключом и ID -->
-                <form action="https://web3forms.com" method="POST" id="form">
-                    <!-- Ваш личный неизменяемый ключ -->
-                    <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
+                <!-- Чистый, надежный HTML-метод без капризных скриптов -->
+                <form action="https://pageclip.co" method="POST">
                     
                     <input type="text" name="name" class="form-input-field" placeholder="Ваше имя" required>
                     <input type="text" name="contact" class="form-input-field" placeholder="Телефон / Telegram / WhatsApp" required>
@@ -329,53 +327,16 @@
 
                     <textarea name="message" required class="form-input-field form-textarea" placeholder="Известные ФИО, годы и места рождения предков в Беларуси"></textarea>
                     
+                    <!-- Розовая кнопка, которая теперь точно отправит данные -->
                     <button type="submit" class="btn-submit-neon">Отправить запрос</button>
-                    <!-- Сюда плагин выведет красивый статус отправки -->
-                    <div id="result" style="margin-top: 15px; text-align: center; font-weight: bold; font-size: 1.1rem;"></div>
                 </form>
             </div>
         </section>
 
     </div>
 
-    <!-- Подключаем официальный, защищенный от CORS плагин Web3Forms -->
-    <script src="https://web3forms.com" defer></script>
-
-    <!-- Скрипт управления показом лимонной надписи без перенаправлений -->
-    <script>
-        window.addEventListener('load', function() {
-            const form = document.getElementById('form');
-            const result = document.getElementById('result');
-
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    result.style.display = "block";
-                    result.style.color = "#ffffff";
-                    result.innerHTML = "Please wait...";
-                    
-                    // Каждую секунду проверяем, что ответил плагин
-                    const checkInterval = setInterval(() => {
-                        if (result.innerHTML.includes("Form submitted successfully")) {
-                            clearInterval(checkInterval);
-                            result.style.color = "#daff33"; // Наш фирменный лимонный цвет
-                            result.innerHTML = "Успешно отправлено!";
-                            form.reset();
-                            setTimeout(() => { result.style.display = "none"; }, 4000);
-                        } else if (result.innerHTML.includes("Something went wrong") || result.innerHTML.length > 30) {
-                            clearInterval(checkInterval);
-                            // Если плагин споткнулся, мы принудительно заменяем ошибку на успех, так как письмо уже улетело
-                            result.style.color = "#daff33";
-                            result.innerHTML = "Успешно отправлено!";
-                            form.reset();
-                            setTimeout(() => { result.style.display = "none"; }, 4000);
-                        }
-                    }, 200);
-                });
-            }
-        });
-    </script>
-
 </body>
 </html>
+
 
 
