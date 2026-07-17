@@ -305,13 +305,16 @@
             <div class="pro-form-wrapper">
                 <h4>Анкета поиска</h4>
                 
-                <!-- ID формы зафиксирован для точной связи со скриптом -->
-                <form id="genealogy-main-form">
+                <!-- 1. ИСПРАВЛЕНО: Прямой адрес робота API, чтобы хостинг GitHub не выдавал ошибку 405 -->
+                <form action="https://web3forms.com" method="POST">
                     
                     <!-- Ваш личный неизменяемый рабочий ключ -->
                     <input type="hidden" name="access_key" value="b635650e-c032-4efa-8d65-30948f1308a7">
                     
-                    <!-- Вся ваша анкета полностью восстановлена -->
+                    <!-- 2. ИСПРАВЛЕНО: Ссылка автоматического возврата строго на ваш главный рабочий сайт -->
+                    <input type="hidden" name="redirect" value="https://github.io">
+                    
+                    <!-- Полная анкета со всеми вашими данными -->
                     <input type="text" name="name" class="form-input-field" placeholder="Ваше имя" required>
                     <input type="text" name="contact" class="form-input-field" placeholder="Телефон / Telegram / WhatsApp" required>
                     <input type="email" name="email" class="form-input-field" placeholder="Email для связи" required>                    
@@ -331,61 +334,17 @@
 
                     <textarea name="message" required class="form-input-field form-textarea" placeholder="Известные ФИО, годы и места рождения предков в Беларуси"></textarea>
                     
+                    <!-- Ваша рабочая розовая кнопка отправки запроса -->
                     <button type="submit" class="btn-submit-neon">Отправить запрос</button>
-                    
-                    <!-- Сюда выводится лимонный текст статуса -->
-                    <div id="form-status-neon" style="margin-top: 15px; text-align: center; font-weight: bold; font-size: 1.1rem; display: none;"></div>
                 </form>
             </div>
         </section>
 
     </div>
 
-    <!-- Исправленный скрипт фоновой отправки без конфликтов CORS и без 405 ошибки -->
-    <script>
-        document.getElementById('genealogy-main-form').addEventListener('submit', function(e) {
-            e.preventDefault(); // Намертво блокируем любые переходы на внешние сайты
-            
-            const statusBox = document.getElementById('form-status-neon');
-            statusBox.style.display = "block";
-            statusBox.style.color = "#ffffff";
-            statusBox.textContent = "Отправка вашей анкеты...";
-
-            // Передаем чистый объект FormData без перевода в JSON, чтобы обойти CORS-блокировку браузера
-            const formData = new FormData(this);
-
-            fetch('https://web3forms.com', {
-                method: 'POST',
-                body: formData
-            })
-            .then(async (response) => {
-                if (response.ok) {
-                    statusBox.style.color = "#daff33"; // Лимонный цвет успеха
-                    statusBox.textContent = "Успешно! Ваше сообщение отправлено.";
-                    this.reset(); // Полностью очищаем все поля анкеты
-                } else {
-                    const errData = await response.json();
-                    statusBox.style.color = "#ff33b8";
-                    statusBox.textContent = errData.message || "Ошибка сервера.";
-                }
-            })
-            .catch(() => {
-                // Если сеть Гитхаба на секунду зависнет, мы все равно пишем успех, так как данные улетают
-                statusBox.style.color = "#daff33";
-                statusBox.textContent = "Успешно отправлено! Проверьте почту.";
-                this.reset();
-            })
-            .then(function() {
-                // Скрываем надпись через 5 секунд
-                setTimeout(() => {
-                    statusBox.style.display = "none";
-                }, 5000);
-            });
-        });
-    </script>
-
 </body>
 </html>
+
 
 
 
