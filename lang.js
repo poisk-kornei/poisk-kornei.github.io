@@ -5,6 +5,17 @@ const translations = {
         right1: "Поиск документов для Карты поляка и подтверждения происхождения.",
         right2: "✦ Работа по доверенности во всех госархивах Беларуси.",
         secHead: "Поиск происхождения",
+        
+        // Переводы для 4 табличек направлений
+        card1T: "Польские корни",
+        card1P: "Розыск выписей из метрик, списков избирателей в Сейм, документов о депортации предков.",
+        card2T: "Еврейские корни",
+        card2P: "Поиск по раввинатам, ревизским сказкам, личным делам и архивам черты оседлости.",
+        card3T: "Немецкие корни",
+        card3P: "Розыск церковных книг колонистов и списков переселенцев для миграционных программ.",
+        card4T: "Сложные кейсы",
+        card4P: "Восстановление цепочки родства для подачи в ЗАГС даже при плохой сохранности фондов.",
+
         formH2: "Форма запроса",
         formP: "Оставьте свои контакты. Наш эксперт-генеалог проведет бесплатный анализ и свяжется с вами.",
         formH4: "Анкета поиска",
@@ -17,7 +28,7 @@ const translations = {
         opt3: "Немецкие корни",
         opt4: "Сложный кейс (Восстановление родства)",
         label: "Готов предоставить нотариальную доверенность для ЗАГС и архивов",
-        pMsg: "Известные ФИО, годы и места рождения предков в Беларуси",
+        pMsg: "Известные ФИО, годы и места рождения предков in Беларуси",
         btnSub: "Отправить запрос"
     },
     en: {
@@ -26,6 +37,17 @@ const translations = {
         right1: "Search for documents for Karta Polaka and confirmation of origin.",
         right2: "✦ Proxy work in all state archives of Belarus.",
         secHead: "Search of Origin",
+        
+        // Переводы для 4 табличек направлений на английский
+        card1T: "Polish Roots",
+        card1P: "Search for metric extracts, Sejm voter lists, and ancestor deportation records.",
+        card2T: "Jewish Roots",
+        card2P: "Search through rabbinates, revision lists, personal files, and Pale of Settlement archives.",
+        card3T: "German Roots",
+        card3P: "Search for church books of colonists and lists of settlers for migration programs.",
+        card4T: "Complex Cases",
+        card4P: "Restoration of the chain of kinship to submit to registry offices even with poorly preserved records.",
+
         formH2: "Inquiry Form",
         formP: "Leave your contact details. Our expert genealogist will conduct a free analysis and contact you.",
         formH4: "Search Questionnaire",
@@ -59,7 +81,24 @@ window.changeLang = function(lang) {
     const sh = document.querySelector('.section-header');
     if (sh) sh.textContent = translations[lang].secHead;
     
-    // 3. Блок анкеты поиска (Нижняя табличка)
+    // 3. ИСПРАВЛЕНО: Безопасный перевод внутренних текстов всех 4 табличек
+    const cards = document.querySelectorAll('.prog-card');
+    if (cards && cards.length >= 4) {
+        // Табличка 1
+        cards[0].querySelector('h3').textContent = translations[lang].card1T;
+        cards[0].querySelector('p').textContent = translations[lang].card1P;
+        // Табличка 2
+        cards[1].querySelector('h3').textContent = translations[lang].card2T;
+        cards[1].querySelector('p').textContent = translations[lang].card2P;
+        // Табличка 3
+        cards[2].querySelector('h3').textContent = translations[lang].card3T;
+        cards[2].querySelector('p').textContent = translations[lang].card3P;
+        // Табличка 4
+        cards[3].querySelector('h3').textContent = translations[lang].card4T;
+        cards[3].querySelector('p').textContent = translations[lang].card4P;
+    }
+    
+    // 4. Блок анкеты поиска (Нижняя табличка)
     const fh2 = document.querySelector('.bottom-grid .bottom-info h2');
     const fp = document.querySelector('.bottom-grid .bottom-info p');
     const fh4 = document.querySelector('.pro-form-wrapper h4');
@@ -68,7 +107,7 @@ window.changeLang = function(lang) {
     if (fp) fp.textContent = translations[lang].formP;
     if (fh4) fh4.textContent = translations[lang].formH4;
     
-    // 4. Подсказки внутри полей (Плейсхолдеры)
+    // 5. Подсказки внутри полей (Плейсхолдеры)
     const iName = document.querySelector('input[name="name"]');
     const iContact = document.querySelector('input[name="contact"]');
     const iEmail = document.querySelector('input[name="email"]');
@@ -79,14 +118,14 @@ window.changeLang = function(lang) {
     if (iEmail) iEmail.placeholder = translations[lang].pEmail;
     if (iMsg) iMsg.placeholder = translations[lang].pMsg;
     
-    // 5. Текст у галочки и розовая кнопка
+    // 6. Текст у галочки и розовая кнопка
     const lbl = document.querySelector('label[for="attorney_check"]');
     const sBtn = document.querySelector('.btn-submit-neon');
     
     if (lbl) lbl.textContent = translations[lang].label;
     if (sBtn) sBtn.textContent = translations[lang].btnSub;
     
-    // 6. Выпадающий список национальностей
+    // 7. Выпадающий список национальностей
     const sel = document.querySelector('select[name="ethnicity"]');
     if (sel && sel.options.length >= 5) {
         sel.options[0].textContent = translations[lang].opt0;
@@ -96,3 +135,4 @@ window.changeLang = function(lang) {
         sel.options[4].textContent = translations[lang].opt4;
     }
 };
+
